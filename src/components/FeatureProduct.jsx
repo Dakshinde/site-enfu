@@ -39,12 +39,24 @@ export const FeatureProduct = () => {
                         <Sparkles className="w-4 h-4" />
                         Our First Internal Venture
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
+                    <h2 className="text-4xl md:text-5xl font-extrabold mb-4 flex items-center gap-3">
                         Meet <span className="text-blue-400">Fuora Social</span>
+                        <div className="inline-block animate-pulse">
+                            <ExternalLink className="w-6 h-6 text-blue-400" />
+                        </div>
                     </h2>
                     <p className="text-black max-w-2xl text-lg">
                         Fuora Social is an AI-powered platform designed to manage and automate 17+ social media channels from one unified dashboard.
                     </p>
+                    <a
+                        href="https://fuorasocial.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mt-6 hover:bg-blue-500/20 transition-colors duration-300"
+                    >
+                        <span>Click here to explore</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
                 </div>
 
                 <div className="flex justify-center">

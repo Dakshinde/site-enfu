@@ -12,12 +12,12 @@ const DEFAULT_GLOW_COLOR = '96, 165, 250';
 const MOBILE_BREAKPOINT = 768;
 
 const cardData = [
-  { color: '#C1E8FF', title: '', description: 'Plan and schedule posts across all your social media platforms with intelligent timing suggestions. Optimize your content delivery for maximum engagement and reach.', label: 'Auto Scheduling' },
-  { color: '#C1E8FF', title: '', description: 'Track performance with real-time insights and comprehensive analytics. Monitor engagement, reach, and conversions across all your social channels in one unified dashboard.', label: 'Analytics Dashboard' },
+  { color: '#C1E8FF', title: '', description: 'Plan and schedule posts across all your social media platforms with intelligent timing suggestions. Optimize your content delivery for maximum engagement and reach.', label: 'Auto Scheduling', link: 'https://fuorasocial.com/' },
+  { color: '#C1E8FF', title: '', description: 'Track performance with real-time insights and comprehensive analytics. Monitor engagement, reach, and conversions across all your social channels in one unified dashboard.', label: 'Analytics Dashboard', link: 'https://fuorasocial.com/' },
   { color: '#C1E8FF', title: '', description: '', label: '', image: fuoraSocial },
   { color: '#C1E8FF', title: '', description: '', label: '', image: socialFuora },
-  { color: '#C1E8FF', title: '', description: 'Automate personalized engagement with AI-powered responses at scale. Build meaningful connections with your audience through intelligent direct messaging automation.', label: 'AI DMs' },
-  { color: '#C1E8FF', title: '', description: 'Monitor and defend your brand reputation in real-time using context-aware systems. Protect your image with advanced threat detection and automated response capabilities.', label: 'Brand Safety' }
+  { color: '#C1E8FF', title: '', description: 'Automate personalized engagement with AI-powered responses at scale. Build meaningful connections with your audience through intelligent direct messaging automation.', label: 'AI DMs', link: 'https://fuorasocial.com/' },
+  { color: '#C1E8FF', title: '', description: 'Monitor and defend your brand reputation in real-time using context-aware systems. Protect your image with advanced threat detection and automated response capabilities.', label: 'Brand Safety', link: 'https://fuorasocial.com/' }
 ];
 
 const createParticleElement = (x, y, color = DEFAULT_GLOW_COLOR) => {
@@ -63,7 +63,8 @@ const ParticleCard = ({
   glowColor = DEFAULT_GLOW_COLOR,
   enableTilt = true,
   clickEffect = false,
-  enableMagnetism = false
+  enableMagnetism = false,
+  link = null
 }) => {
   const cardRef = useRef(null);
   const particlesRef = useRef([]);
@@ -221,6 +222,11 @@ const ParticleCard = ({
     };
 
     const handleClick = e => {
+      if (link) {
+        window.open(link, '_blank');
+        return;
+      }
+
       if (!clickEffect) return;
 
       const rect = element.getBoundingClientRect();
@@ -281,7 +287,7 @@ const ParticleCard = ({
     <div
       ref={cardRef}
       className={`${className} particle-container`}
-      style={{ ...style, position: 'relative', overflow: 'hidden' }}
+      style={{ ...style, position: 'relative', overflow: 'hidden', cursor: link ? 'pointer' : 'default' }}
     >
       {children}
     </div>
@@ -493,6 +499,7 @@ const MagicBento = ({
                 enableTilt={enableTilt}
                 clickEffect={clickEffect}
                 enableMagnetism={enableMagnetism}
+                link={card.link}
               >
                 {card.image ? (
                   <img 
@@ -587,6 +594,11 @@ const MagicBento = ({
                 };
 
                 const handleClick = e => {
+                  if (card.link) {
+                    window.open(card.link, '_blank');
+                    return;
+                  }
+
                   if (!clickEffect || shouldDisableAnimations) return;
 
                   const rect = el.getBoundingClientRect();
@@ -631,6 +643,11 @@ const MagicBento = ({
                 el.addEventListener('mousemove', handleMouseMove);
                 el.addEventListener('mouseleave', handleMouseLeave);
                 el.addEventListener('click', handleClick);
+
+                // Set cursor to pointer if card has a link
+                if (card.link) {
+                  el.style.cursor = 'pointer';
+                }
               }}
             >
               {card.image ? (
