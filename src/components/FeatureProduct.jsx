@@ -40,10 +40,19 @@ export const FeatureProduct = () => {
                         Our First Internal Venture
                     </div>
                     <h2 className="text-4xl md:text-5xl font-extrabold mb-4 flex items-center gap-3">
-                        Meet <span className="text-blue-400">Fuora Social</span>
-                        <div className="inline-block animate-pulse">
-                            <ExternalLink className="w-6 h-6 text-blue-400" />
-                        </div>
+                        Meet
+                        <a
+                            href="https://fuorasocial.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Open Fuora Social website"
+                            className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-500 transition-colors duration-300 cursor-pointer"
+                        >
+                            <span>Fuora Social</span>
+                            <span className="inline-block animate-pulse">
+                                <ExternalLink className="w-6 h-6" />
+                            </span>
+                        </a>
                     </h2>
                     <p className="text-black max-w-2xl text-lg">
                         Fuora Social is an AI-powered platform designed to manage and automate 17+ social media channels from one unified dashboard.
